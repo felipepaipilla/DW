@@ -83,4 +83,12 @@ export class InvoiceIndexComponent implements OnInit {
     });
   }
 
+  getFullName(data: CustomerModel): string{
+    if (!data) {
+      return '';
+    }
+    
+    return `${data.surname} ${data.name}`;
+  }
+
 }
