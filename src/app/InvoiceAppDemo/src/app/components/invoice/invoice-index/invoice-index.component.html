@@ -1,1 +1,9 @@
-<router-outlet></router-outlet>
+<dx-button text="Nueva Factura" (click)="addInvoice()"></dx-button>
+<hr />
+<dx-data-grid [dataSource]="invoiceDataSource" (onSelectionChanged)="selectionChanged($event)" [hoverStateEnabled]="true">
+    <dxo-selection mode="single"></dxo-selection>
+    <dxi-column dataField="id"></dxi-column>
+    <dxi-column dataField="prefix"></dxi-column>
+    <dxi-column dataField="invoiceSequence"></dxi-column>
+    <dxi-column dataField="date"></dxi-column>
+</dx-data-grid>
