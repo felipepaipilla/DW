@@ -19,7 +19,15 @@ export class InvoiceService {
     return this.httpClient.get<InvoiceModel>(`${environment.invoiceServiceBaseUrl}/${id}`);
   }
 
-  add(): Observable<InvoiceModel> {
-    return this.httpClient.post<InvoiceModel>(environment.invoiceServiceBaseUrl, null);
+  add(invoiceModel: InvoiceModel): Observable<InvoiceModel> {
+    return this.httpClient.post<InvoiceModel>(environment.invoiceServiceBaseUrl, invoiceModel);
+  }
+
+  delete(id: number) {
+    return this.httpClient.delete(`${environment.invoiceServiceBaseUrl}/${id}`);
+  }
+
+  update(invoiceModel: InvoiceModel) {
+    return this.httpClient.put<InvoiceModel>(environment.invoiceServiceBaseUrl, invoiceModel);
   }
 }

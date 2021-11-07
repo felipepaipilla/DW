@@ -33,15 +33,21 @@ namespace API.Controllers
         }
 
         [HttpPost()]
-        public async Task<IActionResult> Post()
+        public async Task<IActionResult> Post(Invoice invoice)
         {
-            return Ok(await invoiceService.Save());
+            return Ok(await invoiceService.Save(invoice));
         }
 
         [HttpPut()]
         public async Task<IActionResult> Put(Invoice invoice)
         {
             return Ok(await invoiceService.Save(invoice));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            return Ok(await invoiceService.Delete(id));
         }
     }
 }

@@ -5,4 +5,5 @@ export interface InvoiceModel {
     date?: Date;
     invoiceSequence?: number;
     prefix?: string;
+    deleted?: boolean;
 }

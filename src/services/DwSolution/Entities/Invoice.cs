@@ -17,6 +17,7 @@ namespace Entities
         public DateTime? Date { get; set; }
         public int? InvoiceSequence { get; set; }
         public string Prefix { get; set; }
+        public bool Deleted { get; set; }
 
         public virtual Customer Customer { get; set; }
         public virtual ICollection<InvoiceDetail> InvoiceDetails { get; set; }

@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    public interface IInvoiceService: IResourceGetAll<Invoice>, IResourceGetById<Invoice, int>
+    public interface IInvoiceService: IResourceGetAll<Invoice>, IResourceGetById<Invoice, int>, IResourceDelete<int>
     {
         Task<Invoice> Save(Invoice invoice);
-
-        Task<Invoice> Save();
     }
 }
