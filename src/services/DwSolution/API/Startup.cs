@@ -33,6 +33,7 @@ namespace API
             services.AddScoped<IProductService, ProductDataService>();
             services.AddScoped<ICustomerService, CustomerDataResource>();
             services.AddScoped<IInvoiceService, InvoiceDataResource>();
+            services.AddScoped<IInvoiceDetailService, InvoiceDetailDataResource>();
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddCors(options =>
             {

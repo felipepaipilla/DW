@@ -57,6 +57,6 @@
     <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
     <div *dxTemplate="let invoice of 'detail'">
         <div class="master-detail-caption">{{ invoice.data.prefix }} {{ invoice.data.invoiceSequence | number:'3.0-0' }} (Detalle de Productos)</div>
-        <!-- <detail-grid [key]="employee.key"></detail-grid> -->
+        <app-invoice-detail-index [invoiceId]="invoice.data.id"></app-invoice-detail-index>
     </div>
 </dx-data-grid>
