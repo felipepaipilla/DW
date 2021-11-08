@@ -15,7 +15,7 @@ WITH [CUSTOMER_35_CTE] AS
     SELECT [A].[CustomerId]
       FROM [dbo].[Invoice]   [A]
 INNER JOIN [CUSTOMER_35_CTE] [B] ON [A].[CustomerId] = [B].[CustomerId]
-     WHERE [A].[Date] BETWEEN '2000-02-01' AND '2000-05-25'
+     WHERE [A].[Date] BETWEEN '2000-02-01 00:00:00.000' AND '2000-05-25 23:59:59.999'
      
 )
 

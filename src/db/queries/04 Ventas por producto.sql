@@ -7,7 +7,9 @@ WITH [SALES_BY_PRODUCT_CTE] AS
           ,SUM([AA].[TotalByProduct]) AS [TotalByProduct]
       FROM (SELECT [ProductId]
                   ,[A].[UnitPrice] * [A].[Quantity] AS [TotalByProduct]
-              FROM [dbo].[InvoiceDetail] [A]) [AA]
+              FROM [dbo].[InvoiceDetail] [A]
+        INNER JOIN [dbo].[Invoice] [B] ON [A].[InvoiceId] = [B].[Id]
+             WHERE [B].[Date] BETWEEN '2000-01-01 00:00:00.000' AND '2000-12-31 23:59:59.999') [AA]
    GROUP BY [AA].[ProductId]
 
 )
