@@ -1,0 +1,62 @@
+<hr />
+<dx-data-grid
+    [dataSource]="invoiceDataSource"
+    [allowColumnReordering]="true"
+    [showBorders]="true"
+    [showRowLines]="true"
+    (onRowRemoved)="dataGridOnRowRemoved($event)"
+    (onSaved)="dataGridOnSaved()"
+    (onRowInserted)="dataGridOnRowInserted($event)"
+    (onRowUpdated)="dataGridOnRowUpdated($event)"
+    [hoverStateEnabled]="true"
+    >
+    <dxo-search-panel
+        [visible]="true"
+        [width]="240"
+        placeholder="Buscar..."
+    ></dxo-search-panel>
+    <dxo-paging
+        [enabled]="true"
+        [pageSize]="10"
+    ></dxo-paging>
+    <dxo-editing
+        mode="row"
+        [allowUpdating]="true"
+        [allowDeleting]="true"
+        [allowAdding]="true"
+    ></dxo-editing>
+    <dxi-column
+        dataField="prefix"
+        caption="Prefijo Factura"
+        [allowEditing]="false"
+    ></dxi-column>
+    <dxi-column
+        dataField="invoiceSequence"
+        caption="Consecutivo"
+        [allowEditing]="false"
+    ></dxi-column>
+    <dxi-column
+        dataField="customerId"
+        caption="Cliente"
+    >
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+        <dxo-lookup
+            [dataSource]="customerDataSource"
+            [displayExpr]="getFullName"
+            valueExpr="id"
+        ></dxo-lookup>
+    </dxi-column>
+    <dxi-column
+        dataField="date"
+        dataType="date"
+        caption="Fecha Factura"
+        format="yyyy-MM-dd"
+    >
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
+    <div *dxTemplate="let invoice of 'detail'">
+        <div class="master-detail-caption">{{ invoice.data.prefix }} {{ invoice.data.invoiceSequence | number:'3.0-0' }} (Detalle de Productos)</div>
+        <app-invoice-detail-index [invoiceId]="invoice.data.id"></app-invoice-detail-index>
+    </div>
+</dx-data-grid>

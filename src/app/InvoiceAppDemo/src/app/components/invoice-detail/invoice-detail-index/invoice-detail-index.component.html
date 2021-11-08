@@ -1,0 +1,43 @@
+<dx-data-grid
+    [dataSource]="invoiceDetails"
+    [showBorders]="true"
+    [showRowLines]="true"
+>
+    <dxi-column
+        dataField="productId"
+        caption="Producto"
+        [allowEditing]="false"
+    >
+        <dxo-lookup
+            [dataSource]="products"
+            displayExpr="detail"
+            valueExpr="id"
+        ></dxo-lookup>
+    </dxi-column>
+    <dxi-column
+        dataField="unitPrice"
+        caption="Valor de Venta"
+        [allowEditing]="false"
+        format="currency"
+    ></dxi-column>
+    <dxi-column
+        dataField="quantity"
+        caption="Unidades"
+        [allowEditing]="false"
+    ></dxi-column>
+    <dxi-column
+        dataField="totalByProductTemplatea"
+        cellTemplate="totalByProductTemplate"
+        caption="Total"
+        alignment="right"
+    ></dxi-column>
+    <div *dxTemplate="let item of 'totalByProductTemplate'">
+        {{ (item.data.unitPrice * item.data.quantity) | currency }}
+    </div>
+    <dxo-summary>
+        <dxi-total-item
+            column="productId"
+            summaryType="count"
+        ></dxi-total-item>
+      </dxo-summary>
+</dx-data-grid>
